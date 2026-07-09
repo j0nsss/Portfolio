@@ -54,11 +54,11 @@ export default function NeuButton({
   );
 
   if (href) {
+    const isExternal = href.startsWith('http') || href.startsWith('mailto');
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...(isExternal && { target: '_blank', rel: 'noopener noreferrer' })}
         className={cn(base, variantClasses, className)}
         onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
         aria-label={ariaLabel}
