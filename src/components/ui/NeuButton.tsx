@@ -12,6 +12,7 @@ interface NeuButtonProps {
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
   ariaLabel?: string;
+  className?: string;
 }
 
 const sizeClasses: Record<NonNullable<NeuButtonProps['size']>, string> = {
@@ -31,6 +32,7 @@ export default function NeuButton({
   icon,
   iconPosition = 'left',
   ariaLabel,
+  className,
 }: NeuButtonProps) {
   const base = cn(
     'inline-flex items-center justify-center gap-2 rounded-neu font-medium transition-all duration-200 ease-neu',
@@ -57,7 +59,7 @@ export default function NeuButton({
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={cn(base, variantClasses)}
+        className={cn(base, variantClasses, className)}
         onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
         aria-label={ariaLabel}
       >
@@ -71,7 +73,7 @@ export default function NeuButton({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={cn(base, variantClasses)}
+      className={cn(base, variantClasses, className)}
       aria-label={ariaLabel}
     >
       {content}
