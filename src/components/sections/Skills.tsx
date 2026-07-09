@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import NeuCard from '@/components/ui/NeuCard';
 import SkillBadge from '@/components/ui/SkillBadge';
@@ -27,7 +27,7 @@ export default function Skills() {
         {GROUPS.map((group, i) => {
           const items = skills.filter((s) => group.categories.includes(s.category));
           return (
-            <motion.div
+            <m.div
               key={group.label}
               initial={reduced ? false : { opacity: 0, y: 20 }}
               whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
@@ -44,7 +44,7 @@ export default function Skills() {
                   ))}
                 </div>
               </NeuCard>
-            </motion.div>
+            </m.div>
           );
         })}
       </div>

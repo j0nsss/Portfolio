@@ -1,4 +1,4 @@
-import { motion, type Variants } from 'framer-motion';
+import { m, type Variants } from 'framer-motion';
 import { ArrowRight, Download, Mail } from 'lucide-react';
 import NeuButton from '@/components/ui/NeuButton';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
@@ -31,31 +31,31 @@ export default function Hero() {
         }}
       />
       <div className="section-container section-padding relative">
-        <motion.div
+        <m.div
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center"
           variants={container}
           initial={reduced ? false : 'hidden'}
           animate="show"
         >
           <div className="lg:col-span-7 space-y-6">
-            <motion.p
+            <m.p
               variants={item}
               className="text-neu-accent font-mono text-sm uppercase tracking-widest"
             >
               Full Stack Engineer &amp; CS Student
-            </motion.p>
+            </m.p>
 
-            <motion.h1 variants={item} className="text-display-xl font-display font-bold">
+            <m.h1 variants={item} className="text-display-xl font-display font-bold">
               Building things
               <br />
               <span className="text-gradient">that actually work.</span>
-            </motion.h1>
+            </m.h1>
 
-            <motion.p variants={item} className="text-neu-text-secondary text-lg max-w-xl">
+            <m.p variants={item} className="text-neu-text-secondary text-lg max-w-xl">
               I craft fast, reliable web apps — from backend APIs to polished UIs.
-            </motion.p>
+            </m.p>
 
-            <motion.div variants={item} className="flex flex-wrap gap-4">
+            <m.div variants={item} className="flex flex-wrap gap-4">
               <NeuButton
                 href="#projects"
                 variant="primary"
@@ -67,9 +67,9 @@ export default function Hero() {
               <NeuButton href="#" variant="ghost" icon={<Download size={18} />}>
                 Download CV
               </NeuButton>
-            </motion.div>
+            </m.div>
 
-            <motion.div variants={item} className="flex gap-3 pt-2">
+            <m.div variants={item} className="flex gap-3 pt-2">
               <NeuButton
                 variant="ghost"
                 size="sm"
@@ -85,10 +85,10 @@ export default function Hero() {
                 ariaLabel="Email"
                 icon={<Mail size={18} />}
               />
-            </motion.div>
+            </m.div>
           </div>
 
-          <motion.div variants={item} className="lg:col-span-5 flex justify-center lg:justify-end">
+          <m.div variants={item} className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative">
               <span className="absolute inset-0 rounded-full border-4 border-neu-accent-light animate-ping" />
               <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2 bg-neu-base shadow-neu-raised-lg">
@@ -97,8 +97,8 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       </div>
     </section>
   );

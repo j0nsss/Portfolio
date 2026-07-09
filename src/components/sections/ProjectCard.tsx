@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import NeuCard from '@/components/ui/NeuCard';
 import NeuButton from '@/components/ui/NeuButton';
@@ -17,7 +17,7 @@ export default function ProjectCard({ project, reversed = false }: ProjectCardPr
   const reduced = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       initial={reduced ? false : { opacity: 0, y: 30 }}
       whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -93,6 +93,6 @@ export default function ProjectCard({ project, reversed = false }: ProjectCardPr
           </div>
         </div>
       </NeuCard>
-    </motion.div>
+    </m.div>
   );
 }

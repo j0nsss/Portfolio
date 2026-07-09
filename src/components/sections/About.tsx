@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import NeuCard from '@/components/ui/NeuCard';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
@@ -45,7 +45,7 @@ export default function About() {
 
         <div className="space-y-6">
           {stats.map((s, i) => (
-            <motion.div
+            <m.div
               key={s.title}
               initial={reduced ? false : { opacity: 0, y: 20 }}
               whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export default function About() {
                   </div>
                 </div>
               </NeuCard>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

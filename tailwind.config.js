@@ -10,7 +10,7 @@ export default {
           'shadow-dark': '#a3b1c6',
           'shadow-light': '#ffffff',
           'text-primary': '#2d3a4a',
-          'text-secondary': '#6b7a90',
+          'text-secondary': '#56657d',
           accent: '#4f7cac',
           'accent-light': '#d0e4f7',
           'accent-dark': '#2e5c8a',
@@ -79,5 +79,14 @@ export default {
       },
     },
   },
+  safelist: [
+    'shadow-neu-raised',
+    'shadow-neu-sunken',
+    'shadow-neu-hover',
+    'shadow-neu-pressed',
+    'shadow-neu-accent',
+    'shadow-neu-flat',
+    'shadow-neu-raised-lg',
+  ],
   plugins: [],
 };
