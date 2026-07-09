@@ -1,0 +1,3 @@
+export function useScrollSpy() {
+  return '';
+}
