@@ -7,7 +7,7 @@ import NeuButton from '@/components/ui/NeuButton';
 import NeuInput from '@/components/ui/NeuInput';
 import NeuTextarea from '@/components/ui/NeuTextarea';
 import type { ContactFormData } from '@/types';
-import { GithubIcon, LinkedinIcon } from '@/assets/icons/SocialIcons';
+import { GithubIcon, LinkedinIcon, TiktokIcon, InstagramIcon, WhatsappIcon } from '@/assets/icons/SocialIcons';
 import { Reveal } from '@/hooks/useScrollReveal';
 
 type SubmitState = 'idle' | 'sending' | 'success';
@@ -76,25 +76,43 @@ export default function Contact() {
                   <span className="w-7 h-7 rounded-neu-sm bg-neu-base shadow-neu-flat flex items-center justify-center shrink-0">
                     <Mail size={14} className="text-neu-accent" />
                   </span>
-                  hello@yourportfolio.dev
+                  jonadalzam@gmail.com
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="w-7 h-7 rounded-neu-sm bg-neu-base shadow-neu-flat flex items-center justify-center shrink-0">
                     <LinkedinIcon />
                   </span>
-                  /in/yourhandle
+                  Junadhan Alzam
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="w-7 h-7 rounded-neu-sm bg-neu-base shadow-neu-flat flex items-center justify-center shrink-0">
                     <GithubIcon />
                   </span>
-                  <span className="text-neu-accent">@</span> github.com/yourusername
+                  @j0nsss
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-neu-sm bg-neu-base shadow-neu-flat flex items-center justify-center shrink-0">
+                    <TiktokIcon />
+                  </span>
+                  @jonad___
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-neu-sm bg-neu-base shadow-neu-flat flex items-center justify-center shrink-0">
+                    <InstagramIcon />
+                  </span>
+                  @j0_nadd
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="w-7 h-7 rounded-neu-sm bg-neu-base shadow-neu-flat flex items-center justify-center shrink-0">
+                    <WhatsappIcon />
+                  </span>
+                  +62 857-0435-8406
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="w-7 h-7 rounded-neu-sm bg-neu-base shadow-neu-flat flex items-center justify-center shrink-0">
                     <MapPin size={14} className="text-neu-accent" />
                   </span>
-                  Your City, Country
+                  Yogyakarta, Indonesia
                 </li>
               </ul>
             </NeuCard>

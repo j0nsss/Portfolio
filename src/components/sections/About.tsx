@@ -1,4 +1,5 @@
 import { m, useScroll, useTransform } from 'framer-motion';
+import { GraduationCap, Briefcase, MapPin } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import NeuCard from '@/components/ui/NeuCard';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
@@ -7,21 +8,21 @@ import { useRef } from 'react';
 
 const stats = [
   {
-    icon: '🎓',
+    icon: GraduationCap,
     title: 'CS Student',
-    detail: 'State University of [City]',
-    sub: 'Expected 2027',
+    detail: 'Universitas Amikom Yogyakarta',
+    sub: 'Expected 2029',
   },
   {
-    icon: '💼',
+    icon: Briefcase,
     title: 'Freelancer Since 2025',
-    detail: '10+ projects delivered',
+    detail: '50+ projects delivered',
     sub: '100% client satisfaction',
   },
   {
-    icon: '📍',
+    icon: MapPin,
     title: 'Location',
-    detail: 'Your City, Country',
+    detail: 'Yogyakarta, Indonesia',
     sub: 'Open to Remote',
   },
 ];
@@ -81,8 +82,8 @@ export default function About() {
                 <span className="absolute left-0 top-0 h-full w-[3px] bg-accent-gradient rounded-l-neu" />
                 <span className="absolute left-0 top-0 h-full w-[3px] bg-neu-accent/10 rounded-l-neu blur-sm scale-y-0 group-hover:scale-y-110 transition-transform duration-500 origin-top" />
                 <div className="flex items-start gap-4">
-                  <span className="text-2xl shrink-0 mt-0.5" aria-hidden="true">
-                    {s.icon}
+                  <span className="w-9 h-9 rounded-neu-sm bg-neu-base shadow-neu-flat flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">
+                    <s.icon size={18} className="text-neu-accent" />
                   </span>
                   <div>
                     <p className="font-display font-bold text-neu-text-primary text-lg">

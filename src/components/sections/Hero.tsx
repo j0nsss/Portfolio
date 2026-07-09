@@ -1,8 +1,8 @@
 import { m, useScroll, useTransform, type Variants } from 'framer-motion';
-import { ArrowRight, Download, Mail, ChevronDown } from 'lucide-react';
+import { ArrowRight, Download, Mail, ChevronDown, Quote } from 'lucide-react';
 import NeuButton from '@/components/ui/NeuButton';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-import { GithubIcon, LinkedinIcon } from '@/assets/icons/SocialIcons';
+import { GithubIcon, LinkedinIcon, TiktokIcon, InstagramIcon, WhatsappIcon } from '@/assets/icons/SocialIcons';
 import { cn } from '@/utils/cn';
 import { useRef } from 'react';
 
@@ -109,21 +109,42 @@ export default function Hero() {
                 </NeuButton>
               </m.div>
 
-              <m.div variants={item} className="flex gap-3 pt-2">
+              <m.div variants={item} className="flex gap-3 pt-2 flex-wrap">
                 <NeuButton
                   variant="ghost"
                   size="sm"
-                  href="https://github.com"
+                  href="https://github.com/j0nsss"
                   ariaLabel="GitHub"
                   icon={<GithubIcon />}
                 />
-                <NeuButton variant="ghost" size="sm" href="#" ariaLabel="LinkedIn" icon={<LinkedinIcon />} />
+                <NeuButton variant="ghost" size="sm" href="https://www.linkedin.com/in/junadhan-alzam-0789113a7/" ariaLabel="LinkedIn" icon={<LinkedinIcon />} />
                 <NeuButton
                   variant="ghost"
                   size="sm"
-                  href="mailto:hello@yourportfolio.dev"
+                  href="mailto:jonadalzam@gmail.com"
                   ariaLabel="Email"
                   icon={<Mail size={18} />}
+                />
+                <NeuButton
+                  variant="ghost"
+                  size="sm"
+                  href="https://www.tiktok.com/@jonad___"
+                  ariaLabel="TikTok"
+                  icon={<TiktokIcon />}
+                />
+                <NeuButton
+                  variant="ghost"
+                  size="sm"
+                  href="https://www.instagram.com/j0_nadd"
+                  ariaLabel="Instagram"
+                  icon={<InstagramIcon />}
+                />
+                <NeuButton
+                  variant="ghost"
+                  size="sm"
+                  href="https://api.whatsapp.com/send?phone=6285704358406&text=Hi%20"
+                  ariaLabel="WhatsApp"
+                  icon={<WhatsappIcon />}
                 />
               </m.div>
             </div>
@@ -132,15 +153,28 @@ export default function Hero() {
               variants={avatarItem}
               className={cn('lg:col-span-5 flex justify-center lg:justify-end', !reduced && 'animate-float')}
             >
-              <div className="relative">
-                <div className="absolute inset-0 rounded-full animate-glow-pulse" />
-                <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2 bg-neu-base shadow-neu-raised-lg">
-                  <div className="w-full h-full rounded-full bg-neu-base flex items-center justify-center overflow-hidden">
-                    <img
-                      src="/src/assets/hero.png"
-                      alt="Junadhan"
-                      className="w-full h-full object-cover"
-                    />
+              <div className="relative w-72">
+                <div className="absolute -inset-4 rounded-neu-xl animate-glow-pulse" />
+                <div className="relative bg-neu-base shadow-neu-raised-lg rounded-neu-xl p-5 text-center">
+                  <div className="w-20 h-20 mx-auto rounded-full p-1 bg-neu-base shadow-neu-sunken mb-3">
+                    <div className="w-full h-full rounded-full bg-neu-base overflow-hidden">
+                      <img
+                        src="/src/assets/hero.png"
+                        alt="Junadhan"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <p className="font-display font-bold text-neu-text-primary">Junadhan Alzam T.P</p>
+                    <p className="text-neu-accent font-mono text-xs mt-0.5">Full Stack Engineer</p>
+                  </div>
+                  <div className="border-t border-neu-shadow-dark/20 my-3" />
+                  <div className="flex items-start gap-2 text-left">
+                    <Quote size={14} className="text-neu-accent shrink-0 mt-0.5" />
+                    <p className="text-neu-text-secondary text-xs leading-relaxed">
+                      Building fast, reliable web apps with clean architecture and thoughtful UX.
+                    </p>
                   </div>
                 </div>
               </div>

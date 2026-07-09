@@ -10,13 +10,13 @@ export default function Projects() {
         <SectionHeading
           eyebrow="Selected Work"
           title="Projects I've Built"
-          subtitle="A couple of case studies that show how I approach real-world problems."
+          subtitle="A case study that shows how I approach real-world problems."
         />
       </Reveal>
 
       <div className="mt-10 space-y-12 lg:space-y-20">
-        {projects.map((p, index) => (
-          <ProjectCard key={p.id} project={p} reversed={index % 2 !== 0} />
+        {projects.map((p) => (
+          <ProjectCard key={p.id} project={p} />
         ))}
       </div>
     </section>

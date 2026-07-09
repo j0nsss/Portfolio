@@ -1,6 +1,6 @@
 import { Mail, ChevronUp } from 'lucide-react';
 import NeuButton from '@/components/ui/NeuButton';
-import { GithubIcon, LinkedinIcon } from '@/assets/icons/SocialIcons';
+import { GithubIcon, LinkedinIcon, TiktokIcon, InstagramIcon, WhatsappIcon } from '@/assets/icons/SocialIcons';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#home' },
@@ -57,27 +57,48 @@ export default function Footer() {
             <p className="font-mono text-xs text-neu-accent uppercase tracking-[0.15em] mb-3">
               Connect
             </p>
-            <div className="flex md:justify-end gap-2">
+            <div className="flex md:justify-end gap-2 flex-wrap">
               <NeuButton
                 variant="ghost"
                 size="sm"
-                href="https://github.com"
+                href="https://github.com/j0nsss"
                 ariaLabel="GitHub"
                 icon={<GithubIcon />}
               />
               <NeuButton
                 variant="ghost"
                 size="sm"
-                href="#"
+                href="https://www.linkedin.com/in/junadhan-alzam-0789113a7/"
                 ariaLabel="LinkedIn"
                 icon={<LinkedinIcon />}
               />
               <NeuButton
                 variant="ghost"
                 size="sm"
-                href="mailto:hello@yourportfolio.dev"
+                href="mailto:jonadalzam@gmail.com"
                 ariaLabel="Email"
                 icon={<Mail size={18} />}
+              />
+              <NeuButton
+                variant="ghost"
+                size="sm"
+                href="https://www.tiktok.com/@jonad___"
+                ariaLabel="TikTok"
+                icon={<TiktokIcon />}
+              />
+              <NeuButton
+                variant="ghost"
+                size="sm"
+                href="https://www.instagram.com/j0_nadd"
+                ariaLabel="Instagram"
+                icon={<InstagramIcon />}
+              />
+              <NeuButton
+                variant="ghost"
+                size="sm"
+                href="https://api.whatsapp.com/send?phone=6285704358406&text=Hi%20"
+                ariaLabel="WhatsApp"
+                icon={<WhatsappIcon />}
               />
             </div>
           </div>
