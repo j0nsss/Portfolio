@@ -1,26 +1,57 @@
-import { m } from 'framer-motion';
+import { m, useScroll, useTransform } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import NeuCard from '@/components/ui/NeuCard';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { Reveal } from '@/hooks/useScrollReveal';
+import { useRef } from 'react';
 
 const stats = [
-  { icon: '🎓', title: 'CS Student', detail: 'State University of [City]', sub: 'Expected 2027' },
+  {
+    icon: '🎓',
+    title: 'CS Student',
+    detail: 'State University of [City]',
+    sub: 'Expected 2027',
+  },
   {
     icon: '💼',
     title: 'Freelancer Since 2025',
     detail: '10+ projects delivered',
     sub: '100% client satisfaction',
   },
-  { icon: '📍', title: 'Location', detail: 'Your City, Country', sub: 'Open to Remote' },
+  {
+    icon: '📍',
+    title: 'Location',
+    detail: 'Your City, Country',
+    sub: 'Open to Remote',
+  },
 ];
 
 export default function About() {
   const reduced = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [30, -30]);
 
   return (
-    <section id="about" className="section-container section-padding scroll-mt-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <div>
+    <section
+      ref={sectionRef}
+      id="about"
+      className="section-container section-padding scroll-mt-20 relative overflow-hidden"
+    >
+      <span
+        className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-neu-accent/3 blur-3xl pointer-events-none"
+        aria-hidden="true"
+      />
+      <span
+        className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-neu-accent/3 blur-3xl pointer-events-none"
+        aria-hidden="true"
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative z-10">
+        <m.div className="lg:col-span-7" style={reduced ? undefined : { y }}>
           <SectionHeading
             eyebrow="Who I am"
             title="A developer who thinks before typing."
@@ -41,31 +72,28 @@ export default function About() {
               something great together.
             </p>
           </div>
-        </div>
+        </m.div>
 
-        <div className="space-y-6">
+        <div className="lg:col-span-5 space-y-5">
           {stats.map((s, i) => (
-            <m.div
-              key={s.title}
-              initial={reduced ? false : { opacity: 0, y: 20 }}
-              whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <NeuCard className="relative overflow-hidden p-5 pl-6">
-                <span className="absolute left-0 top-0 h-full w-1 bg-accent-gradient rounded-l-neu" />
+            <Reveal key={s.title} variant="fadeRight" delay={i * 0.12}>
+              <NeuCard className="relative overflow-hidden p-5 pl-6 group">
+                <span className="absolute left-0 top-0 h-full w-[3px] bg-accent-gradient rounded-l-neu" />
+                <span className="absolute left-0 top-0 h-full w-[3px] bg-neu-accent/10 rounded-l-neu blur-sm scale-y-0 group-hover:scale-y-110 transition-transform duration-500 origin-top" />
                 <div className="flex items-start gap-4">
-                  <span className="text-2xl" aria-hidden="true">
+                  <span className="text-2xl shrink-0 mt-0.5" aria-hidden="true">
                     {s.icon}
                   </span>
                   <div>
-                    <p className="font-display font-bold text-neu-text-primary">{s.title}</p>
-                    <p className="text-neu-text-secondary text-sm mt-1">{s.detail}</p>
-                    <p className="text-neu-accent text-sm mt-0.5">{s.sub}</p>
+                    <p className="font-display font-bold text-neu-text-primary text-lg">
+                      {s.title}
+                    </p>
+                    <p className="text-neu-text-secondary text-sm mt-0.5">{s.detail}</p>
+                    <p className="text-neu-accent text-xs mt-1 font-mono">{s.sub}</p>
                   </div>
                 </div>
               </NeuCard>
-            </m.div>
+            </Reveal>
           ))}
         </div>
       </div>
