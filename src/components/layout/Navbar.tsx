@@ -1,3 +1,4 @@
+import { AnimatePresence, m } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/utils/cn';
@@ -43,6 +44,15 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
   const handleNavClick = () => setMenuOpen(false);
 
   const renderLinks = (onClick: () => void, mobile = false) =>
@@ -57,16 +67,23 @@ export default function Navbar() {
             className={cn(
               'relative font-medium text-sm transition-all duration-300',
               mobile
-                ? 'block py-3 px-4 rounded-neu-sm'
+                ? 'block py-3.5 px-5 rounded-neu-sm'
                 : 'px-4 py-2 rounded-neu-sm',
               active
-                ? 'text-neu-accent shadow-neu-sunken'
+                ? 'text-neu-accent shadow-neu-sunken bg-neu-base'
                 : 'text-neu-text-secondary hover:text-neu-text-primary hover:shadow-neu-flat',
             )}
           >
             {link.label}
-            {active && !mobile && (
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 w-8 rounded-full bg-accent-gradient" />
+            {active && (
+              <span
+                className={cn(
+                  'absolute bg-accent-gradient rounded-full',
+                  mobile
+                    ? 'left-0 top-1/2 -translate-y-1/2 w-1 h-5 rounded-r-full'
+                    : '-bottom-1 left-1/2 -translate-x-1/2 h-0.5 w-8',
+                )}
+              />
             )}
           </a>
         </li>
@@ -102,19 +119,62 @@ export default function Navbar() {
           aria-label="Navigation menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((o) => !o)}
-          className="md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 text-neu-text-primary shadow-neu-flat rounded-neu-sm"
+          className="md:hidden relative inline-flex items-center justify-center w-11 h-11 -mr-2 text-neu-text-primary shadow-neu-flat rounded-neu-sm overflow-hidden"
         >
-          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          <span className="relative z-10">
+            <AnimatePresence mode="wait">
+              {menuOpen ? (
+                <m.span
+                  key="x"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X size={22} />
+                </m.span>
+              ) : (
+                <m.span
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu size={22} />
+                </m.span>
+              )}
+            </AnimatePresence>
+          </span>
         </button>
       </div>
 
-      {menuOpen && (
-        <div className="md:hidden mx-4 mb-2 bg-neu-base shadow-neu-raised-lg rounded-b-neu-xl border border-neu-shadow-dark/10 overflow-hidden">
-          <ul className="flex flex-col divide-y divide-neu-shadow-dark/10">
-            {renderLinks(handleNavClick, true)}
-          </ul>
-        </div>
-      )}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            <m.div
+              className="fixed inset-0 z-40 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setMenuOpen(false)}
+            />
+            <m.div
+              className="md:hidden relative z-50 mx-4 bg-neu-base shadow-neu-raised-lg rounded-b-neu-xl border border-neu-shadow-dark/10"
+              initial={{ opacity: 0, y: -12, scaleY: 0.95 }}
+              animate={{ opacity: 1, y: 0, scaleY: 1 }}
+              exit={{ opacity: 0, y: -12, scaleY: 0.95 }}
+              transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
+              style={{ transformOrigin: 'top' }}
+            >
+              <ul className="flex flex-col py-2">
+                {renderLinks(handleNavClick, true)}
+              </ul>
+            </m.div>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

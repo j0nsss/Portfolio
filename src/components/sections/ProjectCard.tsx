@@ -1,4 +1,5 @@
-import { m } from 'framer-motion';
+import { useRef } from 'react';
+import { m, useInView } from 'framer-motion';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import NeuCard from '@/components/ui/NeuCard';
 import NeuButton from '@/components/ui/NeuButton';
@@ -13,24 +14,37 @@ interface ProjectCardProps {
   reversed?: boolean;
 }
 
+const ease = [0.25, 0.46, 0.45, 0.94] as const;
+
 export default function ProjectCard({ project, reversed = false }: ProjectCardProps) {
   const reduced = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: false, margin: '-80px' as const });
+  const visible = reduced || isInView;
+
+  const imgX = reversed ? 30 : -30;
+  const contentX = reversed ? -30 : 30;
 
   return (
     <m.div
-      initial={reduced ? false : { opacity: 0, y: 40 }}
-      whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+      ref={ref}
+      initial={false}
+      animate={
+        visible
+          ? { opacity: 1, y: 0, transition: { duration: 0.6, ease } }
+          : { opacity: 0, y: 40, transition: { duration: 0.35, ease } }
+      }
     >
       <NeuCard className="overflow-hidden p-5 lg:p-8 rounded-neu-lg shadow-neu-raised-lg group">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <m.div
             className={cn('relative', reversed && 'lg:order-2')}
-            initial={reduced ? false : { opacity: 0, x: reversed ? 30 : -30 }}
-            whileInView={reduced ? undefined : { opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            initial={false}
+            animate={
+              visible
+                ? { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.1, ease } }
+                : { opacity: 0, x: imgX, transition: { duration: 0.35, ease } }
+            }
           >
             <div className="shadow-neu-sunken rounded-neu overflow-hidden">
               <img
@@ -47,10 +61,12 @@ export default function ProjectCard({ project, reversed = false }: ProjectCardPr
 
           <m.div
             className={cn('space-y-4', reversed && 'lg:order-1')}
-            initial={reduced ? false : { opacity: 0, x: reversed ? -30 : 30 }}
-            whileInView={reduced ? undefined : { opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={false}
+            animate={
+              visible
+                ? { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.2, ease } }
+                : { opacity: 0, x: contentX, transition: { duration: 0.35, ease } }
+            }
           >
             <div className="flex items-center gap-2">
               <span className="text-neu-accent font-mono text-[11px] uppercase tracking-[0.15em]">

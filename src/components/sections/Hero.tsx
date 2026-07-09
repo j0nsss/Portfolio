@@ -135,8 +135,12 @@ export default function Hero() {
               <div className="relative">
                 <div className="absolute inset-0 rounded-full animate-glow-pulse" />
                 <div className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full p-2 bg-neu-base shadow-neu-raised-lg">
-                  <div className="w-full h-full rounded-full bg-accent-gradient flex items-center justify-center text-white text-5xl font-bold font-display">
-                    YN
+                  <div className="w-full h-full rounded-full bg-neu-base flex items-center justify-center overflow-hidden">
+                    <img
+                      src="/src/assets/hero.png"
+                      alt="Junadhan"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 </div>
               </div>
