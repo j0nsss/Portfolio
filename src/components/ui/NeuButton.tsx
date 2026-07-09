@@ -2,7 +2,7 @@ import type { MouseEventHandler, ReactNode } from 'react';
 import { cn } from '@/utils/cn';
 
 interface NeuButtonProps {
-  children: ReactNode;
+  children?: ReactNode;
   variant?: 'primary' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
@@ -11,6 +11,7 @@ interface NeuButtonProps {
   disabled?: boolean;
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
+  ariaLabel?: string;
 }
 
 const sizeClasses: Record<NonNullable<NeuButtonProps['size']>, string> = {
@@ -29,6 +30,7 @@ export default function NeuButton({
   disabled = false,
   icon,
   iconPosition = 'left',
+  ariaLabel,
 }: NeuButtonProps) {
   const base = cn(
     'inline-flex items-center justify-center gap-2 rounded-neu font-medium transition-all duration-200 ease-neu',
@@ -57,6 +59,7 @@ export default function NeuButton({
         rel="noopener noreferrer"
         className={cn(base, variantClasses)}
         onClick={onClick as MouseEventHandler<HTMLAnchorElement>}
+        aria-label={ariaLabel}
       >
         {content}
       </a>
@@ -64,7 +67,13 @@ export default function NeuButton({
   }
 
   return (
-    <button type={type} disabled={disabled} onClick={onClick} className={cn(base, variantClasses)}>
+    <button
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      className={cn(base, variantClasses)}
+      aria-label={ariaLabel}
+    >
       {content}
     </button>
   );

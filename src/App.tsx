@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="bg-neu-base min-h-screen">
       <Navbar />
-      <main>
+      <main className="pt-16">
         <section id="home">
           <Hero />
         </section>
