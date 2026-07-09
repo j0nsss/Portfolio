@@ -17,7 +17,7 @@ export const projects: Project[] = [
     ],
     liveUrl: 'https://neofin-pearl.vercel.app/',
     githubUrl: 'https://github.com/j0nsss/Persolnal-Finance-Tracker',
-    thumbnailSrc: '/src/assets/NeoFin.png',
+    thumbnailSrc: '/NeoFin.png',
     thumbnailAlt: 'Screenshot of Personal Finance Tracker',
     isFeatured: true,
     year: '2026',

@@ -159,7 +159,7 @@ export default function Hero() {
                   <div className="w-20 h-20 mx-auto rounded-full p-1 bg-neu-base shadow-neu-sunken mb-3">
                     <div className="w-full h-full rounded-full bg-neu-base overflow-hidden">
                       <img
-                        src="/src/assets/hero.png"
+                        src="/hero.png"
                         alt="Junadhan"
                         className="w-full h-full object-cover"
                       />
