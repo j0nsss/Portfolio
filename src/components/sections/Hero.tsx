@@ -1,5 +1,5 @@
 import { m, useScroll, useTransform, type Variants } from 'framer-motion';
-import { ArrowRight, Download, Mail, ChevronDown, Quote } from 'lucide-react';
+import { ArrowRight, User, Mail, ChevronDown, Quote } from 'lucide-react';
 import NeuButton from '@/components/ui/NeuButton';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { GithubIcon, LinkedinIcon, TiktokIcon, InstagramIcon, WhatsappIcon } from '@/assets/icons/SocialIcons';
@@ -104,8 +104,8 @@ export default function Hero() {
                 >
                   View My Work
                 </NeuButton>
-                <NeuButton href="#" variant="ghost" icon={<Download size={18} />}>
-                  Download CV
+                <NeuButton href="#about" variant="ghost" icon={<User size={18} />}>
+                  About Me
                 </NeuButton>
               </m.div>
 
