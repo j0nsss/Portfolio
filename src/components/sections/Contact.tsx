@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import emailjs from '@emailjs/browser';
 import { CheckCircle2, Loader2, Mail, MapPin, ArrowRight, Terminal } from 'lucide-react';
 import SectionHeading from '@/components/ui/SectionHeading';
 import NeuCard from '@/components/ui/NeuCard';
@@ -10,22 +11,31 @@ import type { ContactFormData } from '@/types';
 import { GithubIcon, LinkedinIcon, TiktokIcon, InstagramIcon, WhatsappIcon } from '@/assets/icons/SocialIcons';
 import { Reveal } from '@/hooks/useScrollReveal';
 
-type SubmitState = 'idle' | 'sending' | 'success';
+type SubmitState = 'idle' | 'sending' | 'success' | 'error';
 
 export default function Contact() {
   const [submitState, setSubmitState] = useState<SubmitState>('idle');
+  const formRef = useRef<HTMLFormElement>(null);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ContactFormData>({ mode: 'onBlur' });
 
-  const onSubmit = async (data: ContactFormData) => {
+  const onSubmit = async () => {
+    if (!formRef.current) return;
     setSubmitState('sending');
-    // TODO: Replace with EmailJS, Formspree, or backend endpoint
-    console.log(data);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    setSubmitState('success');
+    try {
+      await emailjs.sendForm(
+        'service_5uh0sjw',
+        'template_8sdrhvh',
+        formRef.current,
+        'eDxgJdF7iQcYEFTRm',
+      );
+      setSubmitState('success');
+    } catch {
+      setSubmitState('error');
+    }
   };
 
   return (
@@ -141,7 +151,7 @@ export default function Contact() {
                   </span>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
+                <form ref={formRef} onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
                   <NeuInput
                     label="Full Name"
                     error={errors.name?.message}
@@ -195,6 +205,11 @@ export default function Contact() {
                   >
                     {submitState === 'sending' ? 'Sending…' : 'Send Message'}
                   </NeuButton>
+                  {submitState === 'error' && (
+                    <p className="text-neu-error text-sm text-center">
+                      Failed to send message. Please try again or email me directly.
+                    </p>
+                  )}
                 </form>
               </NeuCard>
             )}
